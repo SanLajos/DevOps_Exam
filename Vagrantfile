@@ -12,6 +12,28 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
+
+  config.vm.define "jenkins_master" do |jenkins_master|
+    jenkins_master.vm.box = "geerlingguy/centos7"
+    jenkins_master.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+     end
+     jenkins_master.vm.network "private_network", ip: "192.168.56.230"
+     jenkins_master.vm.provision "shell", path: "install_scripts/install_master.sh"
+   end
+
+  config.vm.define "jenkins_slave" do |jenkins_slave|
+     jenkins_slave.vm.box = "geerlingguy/centos7"
+     jenkins_slave.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+    jenkins_slave.vm.network "private_network", ip: "192.168.56.231"
+    jenkins_slave.vm.provision "file", source: "files/node.sh", destination: "/tmp/node.sh"
+    jenkins_slave.vm.provision "file", source: "files/index.js", destination: "/tmp/index.js"
+    jenkins_slave.vm.provision "file", source: "files/test_node.sh", destination: "/tmp/test_node.sh"
+    jenkins_slave.vm.provision "shell", path: "install_scripts/install_slave.sh"
+  end
+
   config.vm.box = "base"
 
   # Disable automatic box update checking. If you disable this, then
