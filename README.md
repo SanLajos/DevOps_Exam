@@ -53,3 +53,47 @@ Go to node management
 Here add the preivously added slave-VM (here need your private key).
 
 Then you could start to build your pipeline.
+
+## Do this on the *Jenkins* GUI
+### Add new Node
+Main Menu > Manage Jenkins >  Manage Nodes >   
+1.)  
+  - Name: jenkins-slave  
+  - Type: Pemanent Agent  
+
+2.)  
+  - Description: My .... Jenkins Slave  
+  - Remote dir: /var/lib/jenkins  
+  - Label: slave  
+  - Launch: via SSH  
+  - Host: 192.168.56.20   
+  
+Credentials:  
+  - Domain: Global  
+  - Kind: SSH user with key  
+  - Scope: Global  
+  - ID: jenkins_slave_ssh  
+  - Desc.: SSSH Key for jenkins slave  
+  - Username: jenkins  
+  - PKey: Enter directly (hint: paste private key)  
+
+  - Host Key Ver. Strat.: No verif....  
+
+### Add new Node
+Connect to Git repository  
+
+- At the Project (type: pipeline):  
+- Pipeline: Pip. script from SCM  
+- SCM: git  
+- Repositories:  
+- Url: https://github.com/sferentzi/DevOps_Exam
+- Cred.:  
+- Domain: Global  
+- Kind: U & passwd  
+- Scope: Global  
+- User: git  
+- ID: sferentzi_git  
+- Desc.: git to repo  
+
+### Important setting
+- set Poll SCM: * * * * *
