@@ -66,7 +66,7 @@ Main Menu > Manage Jenkins >  Manage Nodes >
   - Remote dir: /var/lib/jenkins  
   - Label: slave  
   - Launch: via SSH  
-  - Host: 192.168.56.20   
+  - Host: 192.168.56.231   
   
 Credentials:  
   - Domain: Global  
@@ -86,13 +86,13 @@ Connect to Git repository
 - Pipeline: Pip. script from SCM  
 - SCM: git  
 - Repositories:  
-- Url: https://github.com/sferentzi/DevOps_Exam
+- Url: https://github.com/sanlajos/DevOps_Exam
 - Cred.:  
 - Domain: Global  
 - Kind: U & passwd  
 - Scope: Global  
 - User: git  
-- ID: sferentzi_git  
+- ID: git  
 - Desc.: git to repo  
 
 ### Important setting
