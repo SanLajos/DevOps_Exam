@@ -1,4 +1,5 @@
 pipeline {
+    
   agent none
       stages {
         stage('Shellcheck node.sh') {
@@ -26,5 +27,6 @@ pipeline {
             sh 'sudo /var/lib/jenkins/test_node.sh'
           }
         }
+
       } 
 }
